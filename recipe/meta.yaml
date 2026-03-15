@@ -1,24 +1,24 @@
 {% set name = "trame-xterm" %}
-{% set version = "0.2.1" %}
+{% set version = "1.1.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/trame-xterm-{{ version }}.tar.gz
-  sha256: 208ca977325e7c7b77fe5e1a42d0f54531d2f2d5ecf1e05c666ddf3269e5e41d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: eaebe34fe1d204474acba18a52a4ebe2229eb02ddd6aaa5ed6cf43ca723061a2
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
     - python {{ python_min }}
+    - hatchling
     - pip
-    - setuptools
   run:
     - python >={{ python_min }}
     - trame-client
